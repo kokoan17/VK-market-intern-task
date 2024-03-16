@@ -1,21 +1,24 @@
 import { useEffect } from "react";
-import { useSelector, useDispatch } from "react-redux";
+import { useSelector, useDispatch} from "react-redux";
 import {
   calculateTotals,
   deleteAllBagItems,
   fetchBagItems,
 } from "../../state/bag/bagSlice";
 import BagProduct from "../BagProduct/BagProduct";
-import { RootState } from "../../state/store";
+import { AppDispatch, RootState } from "../../state/store";
+import { Button, Panel, PanelHeader, View } from "@vkontakte/vkui";
 
 const BagContainer = () => {
-  const dispatch = useDispatch();
+  const dispatch = useDispatch<AppDispatch>();
 
   useEffect(() => {
     dispatch(fetchBagItems());
   }, [dispatch]);
 
-  const { items, amount, total, isLoading } = useSelector((state: RootState) => state.bag);
+  const { items, amount, isLoading } = useSelector(
+    (state: RootState) => state.bag
+  );
 
   useEffect(() => {
     dispatch(calculateTotals());
@@ -23,29 +26,40 @@ const BagContainer = () => {
 
   if (isLoading) {
     return (
-        <h1>Loading...</h1>
-    )
+      <View activePanel="bagProducts">
+        <Panel id="bagProducts">
+          <PanelHeader>Your bag</PanelHeader>
+          <p>Loading...</p>
+        </Panel>
+      </View>
+    );
   }
 
   if (amount < 1) {
     return (
-      <section>
-        <div>
-          <h2>Oops...</h2>
-          <p>Your bag is empty</p>
-        </div>
-      </section>
+      <View activePanel="bagProducts">
+        <Panel id="bagProducts">
+          <PanelHeader>Your bag</PanelHeader>
+          <p>Упс, ваша корзина пуста...</p>
+        </Panel>
+      </View>
     );
   }
 
   return (
-    <div>
-      {items.map((item) => (
-        <BagProduct key={item.id} item={item} />
-      ))}
-      <p>total - {total}$</p>
-      <button onClick={() => dispatch(deleteAllBagItems())}>delete</button>
-    </div>
+    <View activePanel="bagProducts">
+      <Panel id="bagProducts">
+        <PanelHeader>Your bag</PanelHeader>
+        {items.map((item, index) => (
+          <BagProduct key={item.id} item={item} ind={index} />
+        ))}
+        <div style={{ marginBottom: 20 }}>
+          <Button onClick={() => dispatch(deleteAllBagItems())}>
+            Delete all items
+          </Button>
+        </div>
+      </Panel>
+    </View>
   );
 };
 
