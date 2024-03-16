@@ -27,12 +27,12 @@ const BagProduct = ({ item, ind }: { item: BagProduct; ind: number }) => {
     <>
       <View activePanel="BagProduct">
         <Panel id="BagProduct">
-          <Group header={<Header>Item {ind + 1}</Header>}>
+          <Group header={<Header>Товар {ind + 1}</Header>}>
             <SimpleCell before={<Image src={item.thumbnail} size={75}></Image>}>
               <div>
                 <p>{item.title}</p>
                 <Spacing size={12} />
-                <p>{item.price}$</p>
+                <p>{item.price}руб</p>
               </div>
             </SimpleCell>
             <SimpleCell
@@ -67,7 +67,7 @@ const BagProduct = ({ item, ind }: { item: BagProduct; ind: number }) => {
                   }}
                 ></Button>
               </div>
-              {item.quantity === 1 ? (<p style={{color: "#EF2D56"}}>minimum count is 1</p>) : item.quantity === 10 ? (<p style={{color: "#EF2D56"}}>maximum count is 10</p>) : null}
+              {item.quantity === 1 ? (<p style={{color: "#EF2D56"}}>минимальное кол-во - 1</p>) : item.quantity === 10 ? (<p style={{color: "#EF2D56"}}>максимальное кол-во - 10</p>) : null}
             </SimpleCell>
           </Group>
         </Panel>

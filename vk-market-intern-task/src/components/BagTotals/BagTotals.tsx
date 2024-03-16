@@ -7,11 +7,11 @@ const BagTotals = () => {
     const { amount, total } = useSelector((state: RootState) => state.bag)
   return (
     <Panel id="bagTotals" style={{height: "100vh", position: "relative"}}>
-        <PanelHeader>Total</PanelHeader>
+        <PanelHeader>Информация</PanelHeader>
         <Group style={{position: "fixed", top: 65}}>
             <SimpleCell>
-                <p>final amount: {amount}</p>
-                <p>total price: {total}$</p>
+                <p>Кол-во товаров: {amount}</p>
+                <p>Итого: {total}руб</p>
             </SimpleCell>
         </Group>
     </Panel>

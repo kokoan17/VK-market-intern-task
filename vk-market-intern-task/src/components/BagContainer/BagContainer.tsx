@@ -28,8 +28,8 @@ const BagContainer = () => {
     return (
       <View activePanel="bagProducts">
         <Panel id="bagProducts">
-          <PanelHeader>Your bag</PanelHeader>
-          <p>Loading...</p>
+          <PanelHeader>Ваша корзина</PanelHeader>
+          <p>Загрузка...</p>
         </Panel>
       </View>
     );
@@ -39,7 +39,7 @@ const BagContainer = () => {
     return (
       <View activePanel="bagProducts">
         <Panel id="bagProducts">
-          <PanelHeader>Your bag</PanelHeader>
+          <PanelHeader>Ваша корзина</PanelHeader>
           <p>Упс, ваша корзина пуста...</p>
         </Panel>
       </View>
@@ -49,13 +49,13 @@ const BagContainer = () => {
   return (
     <View activePanel="bagProducts">
       <Panel id="bagProducts">
-        <PanelHeader>Your bag</PanelHeader>
+        <PanelHeader>Ваша корзина</PanelHeader>
         {items.map((item, index) => (
           <BagProduct key={item.id} item={item} ind={index} />
         ))}
         <div style={{ marginBottom: 20 }}>
           <Button onClick={() => dispatch(deleteAllBagItems())}>
-            Delete all items
+            Удалить все товары
           </Button>
         </div>
       </Panel>
