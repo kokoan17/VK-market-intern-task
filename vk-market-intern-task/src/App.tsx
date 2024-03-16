@@ -1,7 +1,11 @@
+import BagContainer from "./components/BagContainer/BagContainer";
+
 const App = () => {
   return (
-    <div>App</div>
-  )
-}
+    <>
+      <BagContainer />
+    </>
+  );
+};
 
-export default App
+export default App;
